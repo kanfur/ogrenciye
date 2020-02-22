@@ -24,6 +24,8 @@ class RestaurantController extends Controller
             'user_id' => $user->id,
             'name'=> $request->name,
             'address'=> $request->address,
+            'phone'=> $request->phone,
+            'website'=> $request->website,
             'coordinate_x'=>$request->coordinate_x,
             'coordinate_y'=>$request->coordinate_y
         ]);
