@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Resources\RestaurantPhotoResource;
 use App\Http\Resources\RestaurantResource;
 use App\Model\Restaurant;
+use App\Model\RestaurantDocument;
 use App\Model\RestaurantPhoto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,26 @@ class RestaurantController extends Controller
         ]);
 
         return new RestaurantResource($restaurant);
+    }
+    public function createDocuments(Request $request){
+        $user = $request->user();
+
+        $restaurant = RestaurantDocument::updateOrCreate([
+            'user_id' => $user->id,
+            'restaurant_id'=> $request->restaurant_id,
+        ],[
+            'user_id' => $user->id,
+            'restaurant_id'=> $request->restaurant_id,
+            'personnel'=> $request->personnel,
+            'title'=> $request->title,
+            'address'=> $request->address,
+            'tax_administration'=> $request->tax_administration,
+            'tax_no'=> $request->tax_no,
+            'tic_sic_no'=>$request->tic_sic_no,
+            'mersis_no'=>$request->mersis_no
+        ]);
+
+        return new RestaurantDocumentResource($restaurant);
     }
 
     public function list(Request $request){

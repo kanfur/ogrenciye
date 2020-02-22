@@ -44,6 +44,7 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
          * Restaurants
          */
         Route::post('restaurant/create','RestaurantController@create');
+        Route::post('restaurant/create/document','RestaurantController@createDocuments');
         Route::get('restaurant/details/{id}','RestaurantController@getById'); // restaurant detaylar
         Route::get('restaurant/list','RestaurantController@list'); //tüm restorantlar
         Route::get('restaurant/my-list','RestaurantController@myList'); // bana ait restaurantlar
