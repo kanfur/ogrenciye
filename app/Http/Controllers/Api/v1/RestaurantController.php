@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\RestaurantDocumentResource;
 use App\Http\Resources\RestaurantPhotoResource;
 use App\Http\Resources\RestaurantResource;
 use App\Model\Restaurant;
