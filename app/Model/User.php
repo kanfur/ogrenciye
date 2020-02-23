@@ -21,6 +21,18 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    public function restaurants(){
+        return $this->hasMany(Restaurant::class);
+    }
+    public function education(){
+        return $this->hasOne(Education::class);
+    }
+    public function isStudent(){
+        if(Count($this->education())){
+            return true;
+        }
+        return false;
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();
