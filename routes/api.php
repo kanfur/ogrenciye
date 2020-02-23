@@ -23,10 +23,11 @@ Route::get('test', function (){
 Route::namespace('Api\v1')->prefix('v1')->group(function () {
 
     Route::post('register', 'AuthController@register');
-    Route::post('register/education', 'AuthController@registerEducation');
     Route::post('login', 'AuthController@login');
 
     Route::group(['middleware' => ['jwt.verify']], function() {
+        /** Register 2. page **/
+        Route::post('register/education', 'AuthController@registerEducation');
         /**
          * Auth
          */

@@ -14,9 +14,12 @@ class Application extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(Restaurant::class);
+        return $this->belongsTo(User::class);
     }
     public function menu(){
-        return $this->belongsTo(Restaurant::class);
+        return $this->belongsTo(Menu::class);
+    }
+    public function restaurant(){
+        return $this->menu->restaurant;
     }
 }
