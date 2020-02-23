@@ -18,9 +18,9 @@ class ApplicationResource extends JsonResource
             'user_id' => $this->user_id,
             'menu_id' => $this->menu_id,
             'description' => $this->description,
-            'menu' => new MenuResource($this->menu),
             'confirmed' => $this->confirmed?$this->confirmed:true,
-            'restaurant' => new RestaurantResource($this->restaurant()),
+            'menu' => new MenuResource($this->menu),
+            //'restaurant' => new RestaurantResource($this->restaurant()),
             'created_at' => $this->created_at?$this->created_at->toDateTimeString():null,
         ];
     }
