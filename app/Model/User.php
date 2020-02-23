@@ -29,7 +29,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function isStudent(){
         //TODO confirmed kontrolü yapılmalı
-        if($this->education()){
+        if($this->education()->count()){
             return true;
         }
         return false;
