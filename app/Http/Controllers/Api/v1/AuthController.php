@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\UserResource;
+use App\Model\Education;
 use App\Model\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +58,23 @@ class AuthController extends Controller
         $token = JWTAuth::fromUser($user);
         return $this->respondWithToken($token);
         //return response()->json(['data' => compact('user','token')],201);
+    }
+    public function registerEducation(Request $request)
+    {
+        $user = $request->user();
+        $education = Education::updateOrCreate([
+            'user_id' => $user->id,
+            'university' => $request->get('university'),
+            'faculty' => $request->get('faculty'),
+            'department' => $request->get('department'),
+            'stu_no' => $request->get('stu_no'),
+            'graduation_date' => $request->get('graduation_date'),
+            'entry_date' => $request->get('entry_date'),
+        ]);
+
+        //$token = JWTAuth::fromUser($user);
+        return new UserResource($user);
+        //return $this->respondWithToken($token);
     }
 
     /**

@@ -23,7 +23,7 @@ class UserResource extends JsonResource
             'about' => $this->about,
             'birthday' => $this->birthday,
             //'photos' => PhotoResource::collection($this->photos),
-            //'is_student' => $this->isStudent(),
+            'is_student' => $this->isStudent(),
             'education' => new EducationResource($this->education),
             'created_at' => $this->created_at?$this->created_at->toDateTimeString():null,
             'updated_at' => $this->updated_at?$this->updated_at->toDateTimeString():null,

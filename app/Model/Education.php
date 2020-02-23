@@ -13,7 +13,7 @@ class Education extends Model
         'user_id','university','faculty','department','stu_no','stu_document','confirmed','graduation_date',
         'entry_date',
     ];
-
+    protected $table = 'educations';
     public function user(){
         return $this->belongsTo(User::class);
     }

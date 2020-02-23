@@ -28,9 +28,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Education::class);
     }
     public function isStudent(){
-        /*if(Count($this->education())){
+        //TODO confirmed kontrolü yapılmalı
+        if($this->education()){
             return true;
-        }*/
+        }
         return false;
     }
     public function getJWTIdentifier()
