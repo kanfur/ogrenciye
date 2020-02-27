@@ -30,7 +30,8 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if ($token = $this->guard()->attempt($credentials)) {//auth()->
-            return $this->respondWithToken($token);
+            //dd(auth()->user()->isStudent());
+            return $this->respondWithTokenUser($token,auth()->user());
         }
 
         return response()->json(['error' => 'Incorrect email/password'], 401);
@@ -106,7 +107,7 @@ class AuthController extends Controller
         }catch (\Exception $e){
             return response()->json(['message' => $e->getMessage()]);
         }
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['success' => true,'message' => 'Successfully logged out']);
     }
 
     /**
@@ -129,10 +130,24 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         $jwt_expired_time = config('values.jwt_expired_time');
+
+        //dd($this->guard()->user());
         return response()->json([
             'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => $jwt_expired_time, //$this->guard()->factory()->getTTL()
+        ]);
+    }
+    protected function respondWithTokenUser($token,$user)
+    {
+        $jwt_expired_time = config('values.jwt_expired_time');
+
+        //dd($this->guard()->user());
+        return response()->json([
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => $jwt_expired_time, //$this->guard()->factory()->getTTL()
+            'is_student' => $user->isStudent(),
         ]);
     }
 
