@@ -20,6 +20,7 @@ class MenuResource extends JsonResource
             'description' => $this->description,
             'menu_date' => $this->menu_date,
             'apply_limit' => $this->apply_limit?$this->apply_limit:5,
+            'apply_count' => $this->applications->count(),
             'created_at' => $this->created_at?$this->created_at->toDateTimeString():null,
             'updated_at' => $this->updated_at?$this->updated_at->toDateTimeString():null,
         ];

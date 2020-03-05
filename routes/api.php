@@ -40,8 +40,9 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
         Route::get('profile', 'Profile\ProfileController@show');
         Route::post('profile', 'Profile\ProfileController@update');
         Route::post('profile/photo','Profile\PhotoController@store');
-        //Route::get('profile/career','Profile\CareerController@show');
-        //Route::post('profile/career','Profile\CareerController@update');
+        Route::delete('profile/photo','Profile\PhotoController@delete');
+        //Route::get('profile/education','Profile\CareerController@show');
+        //Route::post('profile/education','Profile\CareerController@update');
         /**
          * Restaurants
          */

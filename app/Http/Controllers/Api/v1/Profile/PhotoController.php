@@ -55,4 +55,15 @@ class PhotoController extends Controller
         }
         return new UserResource($user);
     }
+
+    public function delete(Request $request){
+        $user = auth()->user();
+        if(!$user){
+            return response()->json(['error'=>'User bulunamadı ! Login olduğunuza emin olunuz !'],403);
+        }
+        $user->photo = null;
+        $user->save();
+
+        return response()->json(['success'=>true,'message'=>'Resim silindi'],200);
+    }
 }
