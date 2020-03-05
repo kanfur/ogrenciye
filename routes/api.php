@@ -62,13 +62,18 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
         Route::delete('menu/remove','MenuController@remove');
         /**** Applications ****/
         Route::post('menu/apply','ApplicationController@apply'); //başvur
-        Route::get('menu/{id}/applications','ApplicationController@listByMenu'); //restorana başvuruları göster
-        Route::get('menu/applications','ApplicationController@myApplications'); //restorana başvuruları göster
+            Route::get('menu/{id}/applications','ApplicationController@listByMenu'); //menuye başvuruları göster
+        Route::get('menu/applications','ApplicationController@myApplications'); //menulere başvurularımı göster
         Route::delete('menu/application/remove','ApplicationController@remove'); //id ile başvuruyu kaldır
 
         /**
          * User Locations
          */
         //TODO locations
+    });
+});
+Route::namespace('Api\v2')->prefix('v2')->group(function () {
+    Route::group(['middleware' => ['jwt.verify']], function() {
+        Route::get('menu/{id}/applications','ApplicationController@listByMenu'); //menuye başvuruları göster
     });
 });
