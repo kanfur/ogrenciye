@@ -25,6 +25,11 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
     Route::post('register', 'AuthController@register');
     Route::post('login', 'AuthController@login');
 
+    /**
+     * University
+     */
+    Route::get('university/list','UniversityController@list');
+
     Route::group(['middleware' => ['jwt.verify']], function() {
         /** Register 2. page **/
         Route::post('register/education', 'AuthController@registerEducation');
@@ -65,6 +70,10 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
             Route::get('menu/{id}/applications','ApplicationController@listByMenu'); //menuye başvuruları göster
         Route::get('menu/applications','ApplicationController@myApplications'); //menulere başvurularımı göster
         Route::delete('menu/application/remove','ApplicationController@remove'); //id ile başvuruyu kaldır
+
+        /**
+         * Universites
+         */
 
         /**
          * User Locations
