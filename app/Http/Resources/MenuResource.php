@@ -19,6 +19,7 @@ class MenuResource extends JsonResource
             'restaurant' => new RestaurantResource($this->restaurant),
             'description' => $this->description,
             'menu_date' => $this->menu_date,
+            'menu_due_date' => $this->menu_due_date,
             'apply_limit' => $this->apply_limit?$this->apply_limit:5,
             'apply_count' => $this->applications->count(),
             'created_at' => $this->created_at?$this->created_at->toDateTimeString():null,

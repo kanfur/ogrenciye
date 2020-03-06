@@ -21,6 +21,7 @@ class CreateMenusTable extends Migration
             $table->integer('apply_limit')->default(5);
             $table->timestamps();
             $table->softDeletes();
+            //menu_due_date eklendi
         });
         Schema::table('menus', function (Blueprint $table) {
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');

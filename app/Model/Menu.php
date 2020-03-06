@@ -10,7 +10,7 @@ class Menu extends Model
     use SoftDeletes;
     //
     protected $fillable = [
-        'restaurant_id','description','menu_date','apply_limit',
+        'restaurant_id','description','menu_date','menu_due_date','apply_limit',
     ];
 
     public function restaurant(){

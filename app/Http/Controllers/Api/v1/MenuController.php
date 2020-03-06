@@ -16,12 +16,14 @@ class MenuController extends Controller
              return response()->json(["error" => "restaurant_id parametresi gereklidir !"]);
         }
         $menu = Menu::updateOrCreate([
+            'id' => $request->id,
             'restaurant_id' => $request->restaurant_id,
-            'menu_date'=> $request->menu_date,
+            //'menu_date'=> $request->menu_date,
         ],[
             'restaurant_id' => $request->restaurant_id,
             'description'=> $request->description,
             'menu_date'=> $request->menu_date,
+            'menu_due_date'=> $request->menu_due_date,
         ]);
         if($request->apply_limit){
             $menu->apply_limit = $request->apply_limit;
