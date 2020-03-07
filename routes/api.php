@@ -29,6 +29,10 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
      * University
      */
     Route::get('university/list','UniversityController@list');
+    /**
+     * Contact
+     */
+    Route::post('contact', 'ContactController@save');
 
     Route::group(['middleware' => ['jwt.verify']], function() {
         /** Register 2. page **/
