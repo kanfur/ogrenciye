@@ -10,7 +10,7 @@ class Restaurant extends Model
     use SoftDeletes;
     //
     protected $fillable = [
-        'user_id','name','address','image','coordinate_x','coordinate_y'
+        'user_id','name','phone','website','address','image','coordinate_x','coordinate_y'
     ];
 
     public function user(){

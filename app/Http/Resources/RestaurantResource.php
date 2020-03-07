@@ -21,6 +21,7 @@ class RestaurantResource extends JsonResource
             'image' => $this->email,
             'phone'=> $request->phone,
             'website'=> $request->website,
+            'address'=> $request->address,
             'coordinate_x' => $this->coordinate_x,
             'coordinate_y' => $this->coordinate_y,
             'created_at' => $this->created_at?$this->created_at->toDateTimeString():null,
