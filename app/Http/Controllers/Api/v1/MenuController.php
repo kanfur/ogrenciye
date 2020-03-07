@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Resources\MenuResource;
 use App\Model\Menu;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,14 +35,16 @@ class MenuController extends Controller
 
     public function listByFilter(Request $request){
         //TODO sayfalama yapılacak
-        $menus = Menu::orderBy('menu_date', 'ASC')->get();
+        $now = Carbon::now();
+        $menus = Menu::orderBy('menu_due_date', 'ASC')->where('menu_due_date','>',$now)->get();
 
         return MenuResource::collection($menus);
     }
 
     public function listByRestaurantId($id){
         //TODO sayfalama yapılacak
-        $menus = Menu::where('restaurant_id',$id)->orderBy('menu_date', 'ASC')->get();
+        $now = Carbon::now();
+        $menus = Menu::where('restaurant_id',$id)->where('menu_due_date','>',$now)->orderBy('menu_due_date', 'ASC')->get();
 
         return MenuResource::collection($menus);
     }
