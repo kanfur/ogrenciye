@@ -15,13 +15,16 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id')->nullable()->comment('üye girişi varsa');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('title')->nullable();
             $table->text('message')->nullable();
             $table->boolean('isSent_mail')->default(0)->comment('mail bildirimi');
             $table->boolean('isRead')->default(0)->comment('okundu mu');
             $table->timestamps();
             $table->softDeletes();
+        });
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

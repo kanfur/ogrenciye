@@ -30,3 +30,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::namespace('Web')->prefix('admin')->group(function () {
+
+    Route::get('/users', 'UserController@index');
+});
