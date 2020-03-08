@@ -18,7 +18,7 @@ class ContactController extends Controller
                 'user_id' => $user_id,
                 'fullname'=> $request->fullname,
                 'phone'=> $request->phone,
-                'email'=> $request->email,
+                'email'=> $request->mail,
                 'title'=> $request->title,
                 'message'=> $request->message,
             ]);
