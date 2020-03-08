@@ -16,6 +16,9 @@ class ContactController extends Controller
         try{
             Contact::updateOrCreate([
                 'user_id' => $user_id,
+                'fullname'=> $request->fullname,
+                'phone'=> $request->phone,
+                'email'=> $request->email,
                 'title'=> $request->title,
                 'message'=> $request->message,
             ]);

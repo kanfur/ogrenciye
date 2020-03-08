@@ -10,7 +10,7 @@ class Contact extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id','title','message','isSent_mail','isRead',
+        'user_id','fullname','phone','email','title','message','isSent_mail','isRead',
     ];
 
     public function user(){
