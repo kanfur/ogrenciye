@@ -51,7 +51,7 @@ class PhotoController extends Controller
                 return response()->json(['error'=>'Photo keyi bulunamadı !'],401);
             }
         } catch (ValidationException $e) {
-            return response()->json(['error'=>'Bir hata meydana geldi !'],401);
+            return response()->json(['error'=>'Bir hata meydana geldi !'.$e->getMessage()],401);
         }
         return new UserResource($user);
     }
