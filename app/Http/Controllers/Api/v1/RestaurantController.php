@@ -73,15 +73,16 @@ class RestaurantController extends Controller
 
     public function photosStore(Request $request)
     {
-        $user = auth()->user();
-        if(!$request->id){
-            return response()->json(['error'=>'id key göndermelisin !'],401);
-        }
-        $restaurant = Restaurant::find($request->id);
-        if(!$restaurant){
-            return response()->json(['error'=>'Restaurant bulunamadı !'],401);
-        }
         try {
+            $user = auth()->user();
+            if(!$request->id){
+                return response()->json(['error'=>'id key göndermelisin !'],401);
+            }
+            $restaurant = Restaurant::find($request->id);
+            if(!$restaurant){
+                return response()->json(['error'=>'Restaurant bulunamadı !'],401);
+            }
+
             $this->validate($request, [
                 'photos' => 'required',
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
@@ -99,10 +100,12 @@ class RestaurantController extends Controller
                         $photo->extension = $image->extension();
                         $photo->_order = 0;
                         $photo->size_kb = $image->getSize()/1024;
-                        $path = $image->move(public_path().'/images/r_p/'.strstr($restaurant->user->email, '@', true).'/', $photo->filename);
+                        $image->move(public_path().'/images/r_p/'.strstr($restaurant->user->email, '@', true).'/', $photo->filename);
                         $photo->mime_type = MimeType::get($photo->extension);
-                        $photo->path = '/images/r_p/'.strstr($user->email, '@', true).'/'.$photo->filename;
+                        $photo->path = config('app.url').'/images/r_p/'.strstr($user->email, '@', true).'/'.$photo->filename;
                         $photo->save();
+                        $restaurant->image = config('app.url').$photo->path;
+                        $restaurant->save();
                         $flag = false;
                     }else{
                         return response()->json(['error'=>'Resimlerden biri yüklenemedi !'],401);
@@ -118,7 +121,7 @@ class RestaurantController extends Controller
                 return response()->json(['error'=>'Photos keyi bulunamadı !'],401);
             }
         } catch (ValidationException $e) {
-            return response()->json(['error'=>'Bir hata meydana geldi !'],401);
+            return response()->json(['error'=>'Bir hata meydana geldi !'. $e->getMessage()],401);
         }
         //TODO  release sonrası: 9 taneden fazla resim yükleyememeli. 9u aşarsa uyarı vermeli ya da eskileri silmeli.
         //TODO  release sonrası: size limit koymalı
