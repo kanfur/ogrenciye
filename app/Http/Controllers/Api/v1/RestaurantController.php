@@ -102,7 +102,7 @@ class RestaurantController extends Controller
                         $photo->size_kb = $image->getSize()/1024;
                         $image->move(public_path().'/images/r_p/'.strstr($restaurant->user->email, '@', true).'/', $photo->filename);
                         $photo->mime_type = MimeType::get($photo->extension);
-                        $photo->path = '/images/r_p/'.strstr($user->email, '@', true).'/'.$photo->filename;
+                        $photo->path = '/images/r_p/'.strstr($restaurant->user->email, '@', true).'/'.$photo->filename;
                         $photo->save();
                         $restaurant->image = $photo->path;
                         $restaurant->save();
