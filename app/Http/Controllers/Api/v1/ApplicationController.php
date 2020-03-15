@@ -40,10 +40,10 @@ class ApplicationController extends Controller
     }
     public function remove(Request $request){
         //TODO güvenlik yapılmalı. Herkes silemesin.
-        if(!$request->id){
-            return response()->json(["error" => "id parametresi gereklidir !"]);
+        if(!$request->menu_id){
+            return response()->json(["error" => "menu_id parametresi gereklidir !"]);
         }
-        $res = Application::where('id',$request->id)->delete();
+        $res = Application::where('menu_id',$request->menu_id)->delete();
         if($res){
             //TODO dil translate yapılacak
             return response()->json(['success' => true,'message'=>'Başvurunuz silindi']);
