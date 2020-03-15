@@ -26,6 +26,7 @@ class UserResource extends JsonResource
             //'photos' => PhotoResource::collection($this->photos),
             'photo' =>  $this->photo? URL::to("/").$this->photo:null,
             'is_student' => $this->isStudent(),
+            'is_verified' => $this->isVerified,
             'education' => new EducationResource($this->education),
             'created_at' => $this->created_at?$this->created_at->toDateTimeString():null,
             'updated_at' => $this->updated_at?$this->updated_at->toDateTimeString():null,

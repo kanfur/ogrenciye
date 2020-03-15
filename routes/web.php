@@ -30,7 +30,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::namespace('Web')->prefix('admin')->group(function () {
-
+Route::namespace('Web')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/users', 'UserController@index');
+    //route('admin.verify_student', ['id' => 1]);
+    Route::post('/users/student/verify/{id}', 'UserController@verifyStudent')->name('verify_student');
 });

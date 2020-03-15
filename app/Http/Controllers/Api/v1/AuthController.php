@@ -149,6 +149,7 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => $jwt_expired_time, //$this->guard()->factory()->getTTL()
             'is_student' => $user->isStudent(),
+            'is_verified' => $user->isVerified? true:false,
         ]);
     }
 
