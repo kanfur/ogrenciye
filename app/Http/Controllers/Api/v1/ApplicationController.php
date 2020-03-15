@@ -49,7 +49,7 @@ class ApplicationController extends Controller
             //TODO dil translate yapılacak
             return response()->json(['success' => true,'message'=>'Başvurunuz silindi']);
         }else{
-            return response()->json(['error' => 'An error has been occured !']);
+            return response()->json(['error' => 'Başvuru bulunamadı !']);
         }
     }
 }
