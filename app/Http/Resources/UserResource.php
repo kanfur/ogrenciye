@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\URL;
 
 class UserResource extends JsonResource
 {
@@ -23,7 +24,7 @@ class UserResource extends JsonResource
             'about' => $this->about,
             'birthday' => $this->birthday,
             //'photos' => PhotoResource::collection($this->photos),
-            'photo' => $this->photo,
+            'photo' =>  URL::to("/").$this->photo,
             'is_student' => $this->isStudent(),
             'education' => new EducationResource($this->education),
             'created_at' => $this->created_at?$this->created_at->toDateTimeString():null,

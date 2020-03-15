@@ -102,9 +102,9 @@ class RestaurantController extends Controller
                         $photo->size_kb = $image->getSize()/1024;
                         $image->move(public_path().'/images/r_p/'.strstr($restaurant->user->email, '@', true).'/', $photo->filename);
                         $photo->mime_type = MimeType::get($photo->extension);
-                        $photo->path = config('app.url').'/images/r_p/'.strstr($user->email, '@', true).'/'.$photo->filename;
+                        $photo->path = '/images/r_p/'.strstr($user->email, '@', true).'/'.$photo->filename;
                         $photo->save();
-                        $restaurant->image = config('app.url').$photo->path;
+                        $restaurant->image = $photo->path;
                         $restaurant->save();
                         $flag = false;
                     }else{
@@ -125,7 +125,7 @@ class RestaurantController extends Controller
         }
         //TODO  release sonrası: 9 taneden fazla resim yükleyememeli. 9u aşarsa uyarı vermeli ya da eskileri silmeli.
         //TODO  release sonrası: size limit koymalı
-        $photos = RestaurantPhoto::where('restaurant_id',$restaurant->id)->get();
+        $photos = RestaurantPhoto::where('restaurant_id',$restaurant->id)->orderBy('id', 'desc')->get();
         return RestaurantPhotoResource::collection($photos);
     }
 }

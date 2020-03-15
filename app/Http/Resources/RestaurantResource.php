@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\URL;
 
 class RestaurantResource extends JsonResource
 {
@@ -14,11 +15,13 @@ class RestaurantResource extends JsonResource
      */
     public function toArray($request)
     {
+        $url = URL::to("/");
+
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
             'name' => $this->name,
-            'image' => $this->image,
+            'image' => $url.$this->image,
             'phone'=> $request->phone,
             'website'=> $request->website,
             'address'=> $request->address,
