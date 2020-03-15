@@ -38,12 +38,13 @@ class ApplicationController extends Controller
 
         return ApplicationResource::collection($applications);
     }
-    public function remove(Request $request){
+    public function removeMyApplication(Request $request){
+        $user = auth()->user();
         //TODO güvenlik yapılmalı. Herkes silemesin.
         if(!$request->menu_id){
             return response()->json(["error" => "menu_id parametresi gereklidir !"]);
         }
-        $res = Application::where('menu_id',$request->menu_id)->delete();
+        $res = Application::where('menu_id',$request->menu_id)->where('user_id',$user->id)->delete();
         if($res){
             //TODO dil translate yapılacak
             return response()->json(['success' => true,'message'=>'Başvurunuz silindi']);

@@ -73,7 +73,7 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
         Route::post('menu/apply','ApplicationController@apply'); //başvur
             Route::get('menu/{id}/applications','ApplicationController@listByMenu'); //menuye başvuruları göster
         Route::get('menu/applications','ApplicationController@myApplications'); //menulere başvurularımı göster
-        Route::delete('menu/application/remove','ApplicationController@remove'); //id ile başvuruyu kaldır
+        Route::delete('menu/application/remove','ApplicationController@removeMyApplication'); //menu_id ile başvuruymu kaldır
 
         /**
          * Universites
