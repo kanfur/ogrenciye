@@ -76,6 +76,11 @@ Route::namespace('Api\v1')->prefix('v1')->group(function () {
         Route::delete('menu/application/remove','ApplicationController@removeMyApplication'); //menu_id ile başvuruymu kaldır
 
         /**
+         * Student
+         */
+        Route::post('student/document','StudentController@createDocument');
+
+        /**
          * Universites
          */
 

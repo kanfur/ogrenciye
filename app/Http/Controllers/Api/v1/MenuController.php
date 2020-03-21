@@ -17,9 +17,8 @@ class MenuController extends Controller
              return response()->json(["error" => "restaurant_id parametresi gereklidir !"]);
         }
         $menu = Menu::updateOrCreate([
-            'id' => $request->id,
+            'id' => $request->menu_id,//update için gerekli
             'restaurant_id' => $request->restaurant_id,
-            //'menu_date'=> $request->menu_date,
         ],[
             'restaurant_id' => $request->restaurant_id,
             'description'=> $request->description,
