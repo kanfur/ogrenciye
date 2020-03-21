@@ -27,6 +27,9 @@ class StudentController extends Controller
                 //dd($request->file('photos'));
                 $flag = true;
                 if($image->isValid()){
+                    if($user->studentDocument){
+                        $user->studentDocument->delete();
+                    }
                     $photo = new StudentDocument();
                     $photo->user_id = $user->id;
                     $photo->filename = $image->getClientOriginalName();

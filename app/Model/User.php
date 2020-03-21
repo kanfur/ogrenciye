@@ -34,6 +34,10 @@ class User extends Authenticatable implements JWTSubject
         }
         return false;
     }
+
+    public function studentDocument(){
+        return $this->hasOne(StudentDocument::class);
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

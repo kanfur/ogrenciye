@@ -32,6 +32,7 @@ Route::get('/', function () {
 
 Route::namespace('Web')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/users', 'UserController@index');
+    Route::get('/students/verify', 'UserController@verifyStudents');
     //route('admin.verify_student', ['id' => 1]);
-    Route::post('/users/student/verify/{id}', 'UserController@verifyStudent')->name('verify_student');
+    Route::post('/users/student/verify/{id}', 'UserController@verifyUser')->name('verify_student');
 });

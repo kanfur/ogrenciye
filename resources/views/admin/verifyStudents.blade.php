@@ -10,11 +10,17 @@
             <div class="row align-items-center">
                 <div class="col-md-1">{{$user->isStudent()?'Ö':'R'}}</div>
                 <div class="col-md-2">
-                    <img src="{{$user->photo}}" style="max-height: 75px">
+                    <img src="{{$user->studentDocument["path"]}}" style="max-height: 75px">
                 </div>
-                <div class="col-md-2">{{$user->name.' '.$user->surname}}</div>
-                <div class="col-md-2">{{$user->phone}}</div>
-                <div class="col-md-3"><small>{{$user->email}}</small></div>
+                <div class="col-md-2">
+                    {{$user->name.' '.$user->surname}} </br>
+                    <small>{{$user->email}}</small></br>
+                    <small>{{$user->phone}}</small>
+                </div>
+                <div class="col-md-3">
+                    {{$user->education->university}} </br>
+                    {{$user->education->department}}
+                </div>
                 <div class="col-md-2">
                     @if(!$user->isVerified)
                         <form class="m-0" method="POST" action="/admin/users/student/verify/{{$user->id}}">
@@ -24,7 +30,6 @@
                     @else
                         <span>&nbsp Onaylı</span>
                     @endif
-
                 </div>
             </div>
         @endforeach
