@@ -10,11 +10,16 @@
             <div class="row align-items-center">
                 <div class="col-md-1">{{$user->isStudent()?'Ö':'R'}}</div>
                 <div class="col-md-2">
-
+                    <img src="{{$user->studentDocument? $user->studentDocument["path"]:""}}" style="max-height: 75px">
                 </div>
                 <div class="col-md-2">
+                    {{$user->name.' '.$user->surname}} </br>
+                    <small>{{$user->email}}</small></br>
+                    <small>{{$user->phone}}</small>
                 </div>
                 <div class="col-md-3">
+                    {{$user->education? $user->education->university:""}} </br>
+                    {{$user->education? $user->education->department:""}}
                 </div>
                 <div class="col-md-2">
                     @if(!$user->isVerified)
